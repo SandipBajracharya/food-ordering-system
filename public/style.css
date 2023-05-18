@@ -1,0 +1,14 @@
+.numbers .numbers_one {
+    color: green;
+}
+.numbers .numbers_two {
+    color: red;
+}
+.error-message {
+    color: red;
+    font-weight: bold;
+}
+#number_one, #number_two {
+    color: red;
+    font-size: 11px;
+}
