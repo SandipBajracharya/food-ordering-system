@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController as CartController;
+use App\Http\Controllers\API\VerificationController as VerificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,13 @@ use App\Http\Controllers\CartController as CartController;
 // });
 
 Route::group(['middleware' => 'auth:api'], function () {
-    Route::get('add-to-cart/{product_id}', [CartController::class, 'addToCart']);
+    Route::group(['middleware' => 'verified'], function () {
+        Route::get('add-to-cart/{product_id}', [CartController::class, 'addToCart']);
+    });
+
+    // email verification
+    Route::get('email/verification-notification', [VerificationController::class, 'sendVerificationEmail']);
+
 });
 
 // 1. composer required laravel/passport

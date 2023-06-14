@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['key' => !empty($key)? $key : ''])
 
 @section('content')
     @php

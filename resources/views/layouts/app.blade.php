@@ -83,8 +83,7 @@
                 </div>
             </div>
         </nav> --}}
-
-        @include('include.navbar')
+        @include('include.navbar', ['key' => !empty($key)? $key : ''])
         @include('sweetalert::alert')
         <main>
             @yield('content')

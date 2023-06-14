@@ -1,3 +1,7 @@
+@php
+    $cart_count = getCartItemsCount();
+@endphp
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
         <a class="navbar-brand" href="/">
@@ -16,8 +20,13 @@
                 </li>
             </ul>
 
+            <form class="d-flex w-50" action="{{route('search.restaurant')}}" method="GET">
+                <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search" value="{{isset($key)? $key : ''}}">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+
             <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav">
                 <!-- Authentication Links -->
                 @guest
                     @if (Route::has('login'))
@@ -36,7 +45,7 @@
                         <a href="#" class="position-relative">
                             <i class="fas fa-cart-plus"></i>
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-badge">
-                                0
+                                {{$cart_count}}
                             </span>
                         </button>
                     </li>

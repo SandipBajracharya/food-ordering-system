@@ -1,10 +1,19 @@
-@extends('layouts.app')
+@extends('layouts.basicLayout')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
+<div class="container" style="height: 100vh">
+    <div class="row justify-content-center align-items-center h-100">
         <div class="col-md-8">
-            <div class="card">
+            <div class="w-100">
+                <div class="d-flex justify-cotent-between">
+                    <a class="navbar-brand" href="/">
+                        <img src="{{ asset('image/food-logo-2.png') }}" alt="logo" width="60px" height="60px">
+                        <span class="ms-3">Food Ordering System</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="card my-4" style="box-shadow: 0px 1px 4px 0px #333;">
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
@@ -82,8 +91,24 @@
                                 </button>
                             </div>
                         </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6 offset-md-4">
+                                <div class="mb-2">OR,</div>
+                                <div>
+                                    <a href="{{ route('redirectToGoogle') }}" class="btn btn-block text-white" style="background-color: #333;">
+                                        <i class="fab fa-google text-white me-2"></i> Login with Google
+                                    </a> 
+                                </div>
+                            </div>
+                        </div>
                     </form>
                 </div>
+            </div>
+            
+            <hr>
+            <div class="mt-3">
+                Already have an account? <a href="/login" style="text-decoration: underline!important;">Click here</a>
             </div>
         </div>
     </div>

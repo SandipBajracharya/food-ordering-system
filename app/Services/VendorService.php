@@ -71,4 +71,22 @@ class VendorService
             return ['status' => 'error', 'message' => $e->getMessage()];
         }
     }
+
+    public function searchVendor($inputs)
+    {
+        $restaurants = Vendor::with(['user.products:name,status'])
+            ->where(function ($query) use ($inputs) {
+                $query->where('brand_name', 'LIKE', '%'.$inputs['search'].'%')
+                    ->orWhere('service', 'LIKE', '%'.$inputs['search'].'%');
+            })
+            ->orWhereHas('user.products', function ($query) use ($inputs) {
+                $query->where('name', 'LIKE', '%'.$inputs['search'].'%')
+                    ->where('status', 'Available');
+            })
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+        return $restaurants;
+    }
 }
+
