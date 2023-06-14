@@ -9,12 +9,13 @@ $(document).ready(function() {
             popup: 'colored-toast'
         },
         showConfirmButton: false,
-        timer: 3000
+        timer: false
     });
 });
 
 function addToCart(id) {
     let token = document.getElementById('accessToken').value;
+    console.log(token);
     if (id && token) {
         $.ajax({
             type: "GET",
@@ -29,7 +30,11 @@ function addToCart(id) {
                 document.getElementById('cart-badge').innerHTML = response.item_count;
             },
             error: function (error) {
-                console.log(error);
+                console.log(error.responseJSON.message);
+                Toast.fire({
+                    icon: 'error',
+                    title: error.responseJSON.message
+                });
             }
         })
     }

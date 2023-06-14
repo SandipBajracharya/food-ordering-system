@@ -24,14 +24,14 @@
             <li class="nav-header">DASHBOARD</li>
             @if (auth()->check() && auth()->user()->role->role == 'admin')
                 <li class="nav-item">
-                    <a href="{{route('slider.index')}}" class="nav-link active">
+                    <a href="{{route('slider.index')}}" class="nav-link" id="slider">
                         <i class="nav-icon far fa-image"></i>
                         <p>
                             Slider
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" id="products">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-gift"></i>
                         <p>
@@ -41,20 +41,20 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link active">
+                            <a href="#" class="nav-link" id="product-item">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Product Items</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/admin/product-sizes" class="nav-link">
+                            <a href="/admin/product-size" class="nav-link" id="product-size">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Product Sizes</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" id="vendors">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
@@ -64,13 +64,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('approvedVendorIndex')}}" class="nav-link active">
+                            <a href="{{route('approvedVendorIndex')}}" class="nav-link" id="approved-vendors">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Approved Vendors</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('pendingVendorIndex')}}" class="nav-link">
+                            <a href="{{route('pendingVendorIndex')}}" class="nav-link" id="pending-vendors">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Pending Vendors</p>
                             </a>

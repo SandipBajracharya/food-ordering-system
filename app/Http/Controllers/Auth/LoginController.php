@@ -76,6 +76,8 @@ class LoginController extends Controller
             Session::put('token', $success['token']);
             Session::put('user', $success['name']);
             return $this->authenticated();
-        } 
+        } else {
+            return redirect('/login')->withErrors(['email' => 'Entered credentials do not match.']);
+        }
     }
 }

@@ -6,16 +6,20 @@ use Illuminate\Http\Request;
 use App\Services\SliderService;
 use App\Services\VendorService;
 use App\Services\ProductService;
+use App\Jobs\WriteFileJob;
+use App\Jobs\SendEmailJob;
+use App\Services\CartService;
 
 class MainController extends Controller
 {
-    private $sliderService, $vendorService, $productService;
+    private $sliderService, $vendorService, $productService, $cartService;
 
-    public function __construct(SliderService $slider, VendorService $vendorService, ProductService $productService)
+    public function __construct(SliderService $slider, VendorService $vendorService, ProductService $productService, CartService $cartService)
     {
         $this->sliderService = $slider;
         $this->vendorService = $vendorService;
         $this->productService = $productService;
+        $this->cartService = $cartService;
     }
 
     public function main()
@@ -39,5 +43,27 @@ class MainController extends Controller
         $productsRes = $this->productService->findProductByUserId($vendor->user_id);
         $products = $productsRes['products'];
         return view('pages.restaurantsDetail', compact('vendor', 'products'));
+    }
+
+    public function dispatchJob()
+    {
+        // WriteFileJob::dispatch();
+        SendEmailJob::dispatch();
+        dd('Mail queued');
+    }
+
+    public function getActiveCartItems()
+    {
+        $cart = $this->cartService->getUsersCart(auth()->user()->id);
+        $cartItems = $this->cartService->getCartItem($cart);
+        return view('pages.cartList', compact('cartItems'));
+    }
+
+    public function searchRestaurant(Request $request)
+    {
+        $inputs = $request->all();
+        $vendors = $this->vendorService->searchVendor($inputs);
+        $key = $inputs['search'];
+        return view('pages.restaurants', compact('vendors', 'key'));
     }
 }

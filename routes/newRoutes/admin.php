@@ -5,7 +5,7 @@ use App\Http\Controllers\Admin\SliderController as SliderController;
 use App\Http\Controllers\Admin\SizeController as SizeController;
 use App\Http\Controllers\Admin\VendorController as VendorController;
 
-Route::group(['middleware' => ['admin-auth'], 'prefix' => 'admin'], function () {
+Route::group(['middleware' => ['admin-auth', 'verified'], 'prefix' => 'admin'], function () {
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::resource('/slider', SliderController::class);
     Route::resource('/product-size', SizeController::class);

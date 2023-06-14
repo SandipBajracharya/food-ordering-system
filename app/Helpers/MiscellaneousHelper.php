@@ -3,6 +3,7 @@
 // this is autoload file
 
 use App\Models\User;
+use App\Services\CartService;
 
 function getVendorApprovalStatus($id)
 {
@@ -16,7 +17,14 @@ function getVendorApprovalStatus($id)
     return $is_approved;
 }
 
-
-// 1. user ma xa tara vendor ma xaina. (which is not approved)
-// 2. $vendor = current data ($vendor is not empty) thus it has to not approved
-// 3. hence $is_approved is false.
+function getCartItemsCount()
+{
+    if (auth()->check()) {
+        $obj = new CartService();
+        $cart_id = $obj->getUsersCart(auth()->user()->id);
+        $cart_items_count = $obj->getCartCount($cart_id);
+    } else {
+        $cart_items_count = 0;
+    }
+    return $cart_items_count;
+}

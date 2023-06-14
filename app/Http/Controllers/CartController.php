@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\ProductService;
 use App\Services\CartService;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CartController extends Controller
 {
@@ -34,5 +35,13 @@ class CartController extends Controller
             ];
         }
         return response()->json($response, $response['statusCode']);
+    }
+
+    public function cartCheckout(Request $request)
+    {
+        $inputs = $request->all();
+        $res = $this->cartService->checkoutCart($inputs);
+        Alert::toast($res['message'], $res['status']);
+        return redirect()->back();
     }
 }
