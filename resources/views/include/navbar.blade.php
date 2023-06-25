@@ -13,10 +13,10 @@
         <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link active" href="#">Home</a>
+                    <a class="nav-link active" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/restaurants">Restaurants</a>
+                    <a class="nav-link" href="{{route('restaurant')}}">Restaurants</a>
                 </li>
             </ul>
 
@@ -42,7 +42,7 @@
                     @endif
                 @else
                     <li class="nav-item dropdown d-flex align-self-center me-3">
-                        <a href="#" class="position-relative">
+                        <a href="{{route('cartItems')}}" class="position-relative">
                             <i class="fas fa-cart-plus"></i>
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-badge">
                                 {{$cart_count}}

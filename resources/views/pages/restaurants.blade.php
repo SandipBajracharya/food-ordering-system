@@ -48,6 +48,10 @@
                         </a>
                     </div>
                 @endforeach
+            @else
+                <div>
+                    No restaurants available. Please use different search tags!
+                </div>
             @endif
         </div>
     </div>

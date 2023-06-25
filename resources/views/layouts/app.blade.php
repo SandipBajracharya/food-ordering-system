@@ -85,7 +85,7 @@
         </nav> --}}
         @include('include.navbar', ['key' => !empty($key)? $key : ''])
         @include('sweetalert::alert')
-        <main>
+        <main style="min-height: 50vh">
             @yield('content')
         </main>
 

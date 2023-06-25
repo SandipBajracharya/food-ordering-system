@@ -11,7 +11,7 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header d-flex justify-content-end">
-                <a href="/slider/create" class="btn btn-success">Add Slider</a>
+                <a href="{{route('slider.create')}}" class="btn btn-success">Add Slider</a>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -37,11 +37,11 @@
                                 </td>
                                 <td>{{$slider->slider_text}}</td>
                                 <td class="d-flex">
-                                    <a class="btn btn-info mr-4" href="slider/{{$slider->id}}/edit">Edit</a>
+                                    <a class="btn btn-info mr-4" href="slider/{{$slider->id}}/edit" title="Edit"><i class="fas fa-edit"></i></a>
                                     <form method="POST" action="" id="slider-delete-form">
                                         @method('DELETE')
                                         @csrf
-                                        <button class="btn btn-danger" type="button" onclick="sweetAlertConfirm(event, {{$slider->id}})">Delete</button>
+                                        <button class="btn btn-danger" type="button" onclick="sweetAlertConfirm(event, {{$slider->id}})" title="Delete"><i class="fas fa-trash"></i></button>
                                     </form>
                                 </td>
                             </tr>
@@ -67,13 +67,7 @@
     <script src="{{asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
     <script src="{{asset('plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
     <script src="{{asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
-    <script src="{{asset('plugins/jszip/jszip.min.js')}}"></script>
-    <script src="{{asset('plugins/pdfmake/pdfmake.min.js')}}"></script>
-    <script src="{{asset('plugins/pdfmake/vfs_fonts.js')}}"></script>
-    <script src="{{asset('plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
-    <script src="{{asset('plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
-    <script src="{{asset('plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Page specific script -->
     <script>
         $(function () {

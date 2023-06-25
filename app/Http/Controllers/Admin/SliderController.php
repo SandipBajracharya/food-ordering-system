@@ -48,7 +48,7 @@ class SliderController extends Controller
     {
         $response = $this->sliderService->addSlider($request);
         Alert::toast($response['message'], $response['status']);
-        return redirect('/slider')->with($response['status'], $response['message']);
+        return redirect('/admin/slider')->with($response['status'], $response['message']);
     }
 
     /**
@@ -74,7 +74,7 @@ class SliderController extends Controller
     {
         $response = $this->sliderService->updateSlider($request, $id);
         Alert::toast($response['message'], $response['status']);
-        return redirect('/slider')->with($response['status'], $response['message']);
+        return redirect('/admin/slider')->with($response['status'], $response['message']);
     }
 
     /**

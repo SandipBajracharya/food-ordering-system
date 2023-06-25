@@ -39,9 +39,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/cart-checkout', [CartController::class, 'cartCheckout'])->name('checkout');
 });
 
-
 Route::get('/search', [MainController::class, 'searchRestaurant'])->name('search.restaurant');
 
-Route::get('/test', function() {
-    (new \App\Services\CartService())->cartTest();
+Route::fallback(function() {
+    return view('pages.error.notFound');
 });

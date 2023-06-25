@@ -21,7 +21,7 @@
                         <a href="#!">About Us</a>
                     </li>
                     <li>
-                        <a href="#!">Restaurants</a>
+                        <a href="{{route('restaurant')}}">Restaurants</a>
                     </li>
                     <li>
                         <a href="#!">Contact Us</a>
